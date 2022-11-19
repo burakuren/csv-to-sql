@@ -3,10 +3,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from django.http import JsonResponse
 
-engine = create_engine('sqlite:///data.db', echo=True)
+engine = create_engine('postgresql://ismizfjt:g2j2DAZL4NqC93ueFhuY3gDIBOzLpb9a@ella.db.elephantsql.com/ismizfjt', echo=True)
 session = Session(engine)
 
-csv_file = "~/proje/mysite/mysite/data.csv"
+csv_file = "~/proje/mysite/mysite/scores_breakdown.csv"
 
 table_name = "data" # a name script that should solve the naming problem.
 
@@ -14,17 +14,38 @@ df = pd.read_csv(csv_file)
 
 #Put it into db
 def create_table(request):
+
     df.to_sql(table_name, con=engine, schema=None, if_exists='append', index=False, index_label=None, chunksize=None,
               dtype=None, method=None)
+
+    engine.execute(
+"""
+ALTER TABLE data 
+ADD COLUMN IF NOT EXISTS id VARCHAR;
+""")
+    session.commit()
+
+    engine.execute(
+"""
+ALTER TABLE data
+ALTER COLUMN id DROP DEFAULT,
+ALTER COLUMN id SET DATA TYPE UUID USING (uuid_generate_v4()), 
+ALTER COLUMN id SET DEFAULT uuid_generate_v4();
+    """)
+
+    session.commit()
+
     return JsonResponse({"message": "Success"})
 
 
 def read_table(request): # or csv file is gonna be transferred by filesystem.
     result = engine.execute(f"SELECT * FROM {table_name}").fetchall()
 
+
     #If you wanna get results in any format you gotta do that here.
 
     return JsonResponse({"message":"Success"})
+
 
 #There is gonna be a POST request and where are gonna use that json to update assosicated columns and rows.
 def update_table(request):

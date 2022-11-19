@@ -1,0 +1,6 @@
+student_subm_id,student_full_name_clean,total_score,q1,q2,q3,q4,q5a,q5b
+11,doe_alice,20.0,2.0,2.0,4.0,4.0,5.0,3.0
+22,doe_bob,9.0,1.0,1.5,3.0,1.0,2.5,0.0
+33,doe_cindy,8.5,0.0,0.0,2.0,4.0,0.0,2.5
+44,doe_darcy,6.0,0.0,0.0,4.0,0.0,0.0,2.0
+55,doe_eve,9.0,2.0,2.0,4.0,1.0,0.0,0.0
