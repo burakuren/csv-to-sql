@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from django.http import JsonResponse
 
-engine = create_engine('postgresql://ismizfjt:g2j2DAZL4NqC93ueFhuY3gDIBOzLpb9a@ella.db.elephantsql.com/ismizfjt', echo=True)
+engine = create_engine('URL', echo=True)
 session = Session(engine)
 
 csv_file = "~/proje/mysite/mysite/scores_breakdown.csv"
