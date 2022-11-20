@@ -12,8 +12,6 @@ db.MetaData.reflect(meta_data)
 
 csv_file = "~/proje/mysite/mysite/scores_breakdown.csv"
 
-table_name = "data" # a name script that should solve the naming problem.
-
 df = pd.read_csv(csv_file)
 
 #Put it into db
