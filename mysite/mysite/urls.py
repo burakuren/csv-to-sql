@@ -19,6 +19,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/', views.create_table),
-    path('read/', views.read_table)
+    path('create/<table_name>', views.create_table),
+    path('read/<table_name>', views.read_table),
+    path('read/<table_name>/<id>/', views.read_table),
+    path('update/<table_name>', views.update_table),
+    path('insert/<table_name>', views.insert_value),
+    path('delete/<table_name>/<id>', views.delete_row)
 ]
