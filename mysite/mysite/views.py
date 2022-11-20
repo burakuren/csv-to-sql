@@ -5,7 +5,7 @@ import sqlalchemy as db
 import json
 from rest_framework.decorators import api_view
 
-    engine = db.create_engine('url', echo=True)
+engine = db.create_engine('url', echo=True)
 session = Session(engine)
 meta_data = db.MetaData(bind=engine)
 db.MetaData.reflect(meta_data)
